@@ -1,48 +1,49 @@
-import { CREATE_COMMENTS, DELETE_COMMENTS } from "./types";
-
-let storage;
-
-if (localStorage.getItem("comments") === null) {
-  storage = [];
-} else {
-  let comments = localStorage.getItem("comments");
-  comments = JSON.parse(comments);
-  let arr = [];
-  storage = comments.map((item) => arr.push(item));
-  storage = arr;
-}
-
-const initialState = {
-  comentsPosts: storage,
-};
 
 
 
-export const postsReducer = (state = initialState, action) => {
+
+
+
+
+export const postsReducer = (state = [], action) => {
   switch (action.type) {
-    case CREATE_COMMENTS:
+    case 'CREATE_COMMENTS':
 
-    let toLocalStor = JSON.stringify(state.comentsPosts);
-      localStorage.setItem("comments", toLocalStor);
+     let commentsState = localStorage.getItem("comments");
+     commentsState = JSON.parse(commentsState);
 
-      return {
+    const addCommentObj = {
+      name: action.name,
+      comments: action.comments,
+      date: action.date,
+      id: action.id,
+    };
+
+    commentsState.push(addCommentObj);
+    let toLocalStor = JSON.stringify(commentsState);
+    localStorage.setItem("comments", toLocalStor);
+
+
+      return [
         ...state,
-        comentsPosts: state.comentsPosts.concat(action.payload),
+        {
+          name: action.name,
+          comments: action.comments,
+          date: action.date,
+          id: action.id
+        },
+      ];
+
+    case 'DELETE_COMMENTS':
         
-      };
+    let newState = state;
+         newState.splice(action.id, 1);
 
-    case DELETE_COMMENTS:
+            let newLocalStor = JSON.stringify(newState);
+            localStorage.setItem("comments", newLocalStor);
 
-      let e = JSON.stringify(state.comentsPosts);
-      localStorage.setItem("comments", e);
-
-      return {
-        ...state,
-        comentsPosts: state.comentsPosts.filter(
-          (posts) => posts.id !== action.payload
-        ),
-        
-      };
+      return [
+        ...newState];
 
     default:
       return state;

@@ -1,18 +1,29 @@
 import React from "react";
 import { render } from "react-dom";
-import { compose, createStore } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 import { postsReducer } from "./redux/postsReducer.js";
 import NoteApp from "./App";
 import "./index.css";
 
-const store = createStore(
-  postsReducer,
-  compose(
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+let commentsLoadState;
+
+if (localStorage.getItem("comments") === null) {
+  commentsLoadState = [];
+} else {
+  let comments = localStorage.getItem("comments");
+  comments = JSON.parse(comments);
+  let arr = [];
+  commentsLoadState = comments.map((item) => {
+    arr.push(item);
+  });
+  commentsLoadState = arr;
+}
+
+let initialState = commentsLoadState;
+
+const store = createStore(postsReducer, initialState);
 
 const app = (
   <Provider store={store}>

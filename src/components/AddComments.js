@@ -21,8 +21,6 @@ class addComment extends React.Component {
     const newPost = {
       name,
       comments,
-      date: new Date().toLocaleTimeString(),
-      id: Date.now(),
     };
     console.log(comments);
 

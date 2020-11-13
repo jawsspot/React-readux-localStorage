@@ -12,6 +12,7 @@ class Ul extends React.Component{
   render(){
 
    if (!this.props.newPosts.length) return <p>Нет новых комментариев</p>;
+   console.log(this.props.newPosts.length);
    return this.props.newPosts.map((li) => {
      return (
        <li key={li.id}>
@@ -33,7 +34,7 @@ class Ul extends React.Component{
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    newPosts: state.comentsPosts,
+    newPosts: state
   };
 };
 
