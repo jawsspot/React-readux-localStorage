@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 export const postsReducer = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_COMMENTS':
