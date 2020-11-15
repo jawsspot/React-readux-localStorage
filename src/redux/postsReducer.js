@@ -24,14 +24,16 @@ const postsReducer = (state = [], action) => {
           name: action.name,
           comments: action.comments,
           date: action.date,
-          id: action.id
+          id: action.id,
+          index: action.index
         },
       ];
 
     case 'DELETE_COMMENTS':
-        
-    let newState = state;
-         newState.splice(action.id, 1);
+        console.log(action.index);
+        let newState = state;
+       
+         newState.splice(action.index, 1);
 
             let newLocalStor = JSON.stringify(newState);
             localStorage.setItem("comments", newLocalStor);

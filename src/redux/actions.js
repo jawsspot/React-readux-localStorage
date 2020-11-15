@@ -6,14 +6,13 @@ export const createComments = (post) => {
     name: post.name,
     comments: post.comments,
     date: new Date().toLocaleTimeString(),
-    id: Date.now(),
+    id: post.id
   };
 };
 
-export const deleteComments = (id) => {
-  console.log(id);
+export const deleteComments = (index) => {
   return {
     type: 'DELETE_COMMENTS',
-    payload: id
+    index: index
   };
 };

@@ -12,16 +12,15 @@ class Ul extends React.Component{
   render(){
 
    if (!this.props.newPosts.length) return <p>Нет новых комментариев</p>;
-   console.log(this.props.newPosts.length);
-   return this.props.newPosts.map((li) => {
+   return this.props.newPosts.map((li, index) => {
      return (
-       <li key={li.id}>
+       <li key={index}>
          <div>
            <h2 className="name">{li.name}</h2>
            <p className="date">{li.date}</p>
          </div>
          <p className="comments">{li.comments}</p>
-         <button onClick={(e) => this.props.deleteComments(li.id)}>Удалить</button>
+         <button onClick={(e) => this.props.deleteComments(index)}>Удалить</button>
        </li>
      );
    });

@@ -21,6 +21,7 @@ class addComment extends React.Component {
     const newPost = {
       name,
       comments,
+      id: Date.now(),
     };
     console.log(comments);
 
@@ -39,6 +40,7 @@ class addComment extends React.Component {
           onChange={(e) => {
             this.setState({ name: e.target.value, validate:"" });
           }}
+          required
         ></input>
         <input
           type="text"
@@ -48,6 +50,7 @@ class addComment extends React.Component {
           onChange={(e) => {
             this.setState({ comments: e.target.value, validate: "" });
           }}
+          required
         ></input>
         <button type="submit">Отправить</button>
 
