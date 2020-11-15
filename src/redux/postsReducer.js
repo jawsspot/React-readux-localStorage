@@ -1,7 +1,8 @@
-export const postsReducer = (state = [], action) => {
+const postsReducer = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_COMMENTS':
 
+      
      let commentsState = localStorage.getItem("comments");
      commentsState = JSON.parse(commentsState);
 
@@ -44,3 +45,5 @@ export const postsReducer = (state = [], action) => {
 
    
 };
+
+export default postsReducer;

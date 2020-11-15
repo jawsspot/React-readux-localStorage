@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import { postsReducer } from "./redux/postsReducer.js";
+import postsReducer from "./redux/postsReducer.js";
 import NoteApp from "./App";
 import "./index.css";
 
@@ -11,6 +11,8 @@ let commentsLoadState;
 
 if (localStorage.getItem("comments") === null) {
   commentsLoadState = [];
+  // записываем в localStorage пустой массив
+  localStorage.setItem("comments", "[]");
 } else {
   let comments = localStorage.getItem("comments");
   comments = JSON.parse(comments);

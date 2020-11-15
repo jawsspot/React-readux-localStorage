@@ -9,7 +9,6 @@ function NoteApp() {
     return (
       <div className="container">
         <AddComments />
-        
         <ul>
           <Ul />
         </ul>
